@@ -1,9 +1,8 @@
-# put this file to /etc/profile.d/
+TELEGRAM_USER_ID="place_your_user_id_here"
+TELEGRAM_BOT_TOKEN="place_your_telegram_bot_token_here"
+TELEGRAM_SEND_MESSAGE_URL="https://api.telegram.org/bot$TELEGRAM_BOT_TOKEN/sendMessage"
 
-USERID="place_your_user_id_here"
-KEY="place_your_telegram_bot_token_here"
-TIMEOUT="10"
-URL="https://api.telegram.org/bot$KEY/sendMessage"
+API_REQUEST_TIMEOUT="10"
 
 LOGIN_DATE="$(date "+%d %b %Y %H:%M")"
 HOSTNAME=$(hostname -f)
@@ -23,4 +22,4 @@ From: $FROM
 EOF
 )
 
-curl -s --max-time $TIMEOUT -d "chat_id=$USERID&disable_web_page_preview=1&text=$MESSAGE" $URL > /dev/null
+curl -s --max-time $API_REQUEST_TIMEOUT -d "chat_id=$TELEGRAM_USER_ID&disable_web_page_preview=1&text=$MESSAGE" $TELEGRAM_SEND_MESSAGE_URL > /dev/null
